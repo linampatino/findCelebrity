@@ -1,0 +1,11 @@
+"1", "Lina", "Patino", "2", "Manuel", "Zapata"
+"1", "Lina", "Patino", "3", "Maria", "Lpoez"
+"1", "Lina", "Patino", "4", "Jose", "Jaramillo"
+"1", "Lina", "Patino", "5", "Paola", "Gomez"
+"2", "Manuel", "Zapata", , ,
+"3", "Maria", "Lpoez", "1", "Lina", "Patino" 
+"3", "Maria", "Lpoez", "2", "Manuel", "Zapata"
+"3", "Maria", "Lpoez", "5", "Paola", "Gomez"
+"4", "Jose", "Jaramillo", "2", "Manuel", "Zapata"
+"4", "Jose", "Jaramillo","5", "Paola", "Gomez"
+"5", "Paola", "Gomez", , ,
