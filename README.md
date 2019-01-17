@@ -11,8 +11,8 @@ Assumptions:
 --- File example --- In this example Manuel and Paola are celebrities, they don't know anyone and everybady knows their.
 
 "1", "Lina", "Patino", "2", "Manuel", "Zapata" 
-"1", "Lina", "Patino", "3", "Maria", "Lpoez" "1", 
-"Lina", "Patino", "4", "Jose", "Jaramillo" 
+"1", "Lina", "Patino", "3", "Maria", "Lpoez" 
+"1", "Lina", "Patino", "4", "Jose", "Jaramillo" 
 "1", "Lina", "Patino", "5", "Paola", "Gomez" 
 "2", "Manuel", "Zapata", , , 
 "3", "Maria", "Lpoez", "1", "Lina", "Patino" 
