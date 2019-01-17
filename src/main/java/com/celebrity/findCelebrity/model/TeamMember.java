@@ -17,12 +17,11 @@ public class TeamMember {
 	private String personId;
 	private String name;
 	private String lastname;
-	private Set<TeamMember> knownPeople = new HashSet<TeamMember>();
+	private Set<TeamMember> knownPeople = new HashSet<>();
 	private boolean isCelebrity;
 	
 	public TeamMember() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public TeamMember(String id, String name, String lastname) {
@@ -37,6 +36,12 @@ public class TeamMember {
 	}
 	
 	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		
+		if (object == null)
+			return false;
+			
 		if (object instanceof TeamMember) {
 			TeamMember temporal = (TeamMember)object;
 			return this.getPersonId().equals(temporal.getPersonId());

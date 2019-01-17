@@ -4,7 +4,6 @@
 package com.celebrity.findCelebrity.repository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +20,6 @@ public class CsvAdapter extends CsvAdaptee implements DataConnectorAdapter {
 	 */
 	public CsvAdapter(String filePath) {
 		super(filePath);
-		// TODO Auto-generated constructor stub
 	}
 
 	/* (non-Javadoc)
@@ -32,8 +30,8 @@ public class CsvAdapter extends CsvAdaptee implements DataConnectorAdapter {
 	 */
 	@Override
 	public Set<TeamMember> getData() {
-		ArrayList<String[]> fileInformation = readFile();
-		Set<TeamMember> result = new HashSet<TeamMember>();
+		ArrayList<String[]> fileInformation = (ArrayList<String[]>) readFile();
+		Set<TeamMember> result = new HashSet<>();
 				
 		TeamMember teamMember = null;
 		TeamMember temporal = null;
@@ -43,7 +41,7 @@ public class CsvAdapter extends CsvAdaptee implements DataConnectorAdapter {
 			teamMember = convertDataToTeamMember(fileLine);
 			
 			if(temporal == null) {
-				knownPeople = new HashSet<TeamMember>();
+				knownPeople = new HashSet<>();
 				temporal = teamMember;
 			}
 			if (!teamMember.equals(temporal)) {
@@ -51,20 +49,14 @@ public class CsvAdapter extends CsvAdaptee implements DataConnectorAdapter {
 				result.add(temporal);
 				
 				temporal = teamMember;
-				knownPeople = new HashSet<TeamMember>();
-				
-				//add known person to team member
-				TeamMember knownPerson = convertDataToKnownPerson(fileLine);
-				if (knownPerson != null) 
-					knownPeople.add(knownPerson);
+				knownPeople = new HashSet<>();
+				addKnownPersonToTeamMember(fileLine, knownPeople);
 				
 			}else {
-				//add known person to team member
-				TeamMember knownPerson = convertDataToKnownPerson(fileLine);
-				if (knownPerson != null) 
-					knownPeople.add(knownPerson);
+				addKnownPersonToTeamMember(fileLine, knownPeople);
 			}
 		}
+		result.add(teamMember);
 		return result;
 	}
 	
@@ -74,8 +66,13 @@ public class CsvAdapter extends CsvAdaptee implements DataConnectorAdapter {
 		String name = fileLine[1];
 		String lastname = fileLine[2];
 		
-		TeamMember teamMember = new TeamMember(id, name, lastname);
-		return teamMember;
+		return new TeamMember(id, name, lastname);
+	}
+	
+	public void addKnownPersonToTeamMember(String[] fileLine, Set<TeamMember> knownPeople) {
+		TeamMember knownPerson = convertDataToKnownPerson(fileLine);
+		if (knownPerson != null) 
+			knownPeople.add(knownPerson);
 	}
 	
 	public TeamMember convertDataToKnownPerson(String[] fileLine) {
@@ -84,11 +81,11 @@ public class CsvAdapter extends CsvAdaptee implements DataConnectorAdapter {
 		String knownPersonName = fileLine[4];
 		String knownPersonLastname = fileLine[5];
 		
-		if(knownPersonId.trim().length()>0 && knownPersonName.trim().length()>0 && knownPersonLastname.trim().length()>0) {
-			System.out.print("si existe");
-			TeamMember knownPerson = new TeamMember(knownPersonId, knownPersonName, knownPersonLastname);
-			return knownPerson;
-		}else
+		if(knownPersonId.trim().length()>0 && knownPersonName.trim().length()>0 && knownPersonLastname.trim().length()>0) 
+			return new TeamMember(knownPersonId, knownPersonName, knownPersonLastname);
+		else
 			return null;
 	}
+
+	
 }
