@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.celebrity.findCelebrity.model.TeamMember;
@@ -42,8 +43,8 @@ public class CelebrityResources {
 			@ApiResponse(code = 201, message = "ok"),
 			@ApiResponse(code = 404, message = "not found celebrities")
 	})
-	public ResponseEntity<Set<TeamMember>> findCelebrity(@ApiParam(value="path", required=true) @PathVariable("path") String path, 
-														 @ApiParam(value="connectorType", required=true) @PathVariable("connectorType") String connectorType){
+	public ResponseEntity<Set<TeamMember>> findCelebrity(@ApiParam(value="path", required=true) @RequestParam("path") String path, 
+														 @ApiParam(value="connectorType", required=true) @RequestParam("connectorType") String connectorType){
 		return ResponseEntity.ok(this.SERVICE.playFindCelebrity(path, connectorType));
 	}
 }
